@@ -9,8 +9,11 @@ const PORT = 3000;
 
 // Middleware
 app.use(bodyParser.json());
-app.use(cors()); // This allows all origins by default
-
+app.use(cors({
+  origin: 'https://eclectic-rolypoly-124fc3.netlify.app',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  credentials: true // only if using cookies/sessions
+}));
 // Connect to MongoDB
 mongoose.connect('mongodb://admin:password@localhost:27017/Class?authSource=admin');
 
@@ -182,3 +185,4 @@ app.get('/student/performance', async (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+
